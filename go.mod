@@ -1,3 +1,3 @@
-module github.com/PeregrineTradersDevTeam/redis-farm
+module github.com/axkit/redisfarm
 
 go 1.16
