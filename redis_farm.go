@@ -1,4 +1,4 @@
-package store
+package redisfarm
 
 // RedisFarm holds collection of RedisStore identified by code.
 type RedisFarm struct {
