@@ -1,4 +1,4 @@
-package store
+package redisfarm
 
 import "github.com/mediocregopher/radix/v3"
 
