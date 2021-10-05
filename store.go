@@ -24,8 +24,10 @@ type Storer interface {
 	Do(cmd string, args ...string) error
 	Lrem(key, element string, cnt int) error
 	Connect() error
-	Exist(key string) (bool, error)
+	Exists(key string) (bool, error)
 }
+
+var _ Storer = (*RedisStore)(nil)
 
 //
 type StoreFarmer interface {
