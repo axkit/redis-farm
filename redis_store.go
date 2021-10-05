@@ -240,3 +240,13 @@ func (rs *RedisStore) Do(cmd string, args ...string) error {
 	}
 	return nil
 }
+
+// Exists returns true if key exists.
+func (rs *RedisStore) Exists(key string) (bool, error) {
+	var val int
+	err := rs.pool.Do(radix.Cmd(&val, "EXISTS", key))
+	if err != nil {
+		return false, err
+	}
+	return val == 1, nil
+}
