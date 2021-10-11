@@ -248,5 +248,5 @@ func (rs *RedisStore) Exists(key string) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	return val == 0, nil
+	return val == 1, nil
 }
