@@ -9,6 +9,7 @@ type Storer interface {
 	Get(key string, val interface{}) error
 	MGet(keys []string, result *[]string) error
 	Set(key string, val string) error
+	SetExt(key string, val string, opts ...string) error
 	Publish(code string) (bool, error)
 	PublishEx(chanel string, msg string) (bool, error)
 	ListLen(key string) (int, error)
@@ -22,6 +23,7 @@ type Storer interface {
 	Lpush(key string, element string) error
 	Rpush(key string, element string) error
 	Do(cmd string, args ...string) error
+	DoAction(radix.Action) error
 	Lrem(key, element string, cnt int) error
 	Connect() error
 	Exists(key string) (bool, error)

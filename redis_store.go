@@ -122,6 +122,14 @@ func (rs *RedisStore) Set(key string, val string) error {
 	return err
 }
 
+func (rs *RedisStore) SetExt(key string, val string, opts ...string) error {
+	err := rs.pool.Do(radix.Cmd(nil, "SET", append([]string{key, val}, opts...)...))
+	if err != nil {
+		return errors.New("redis key " + key + " setting failed. Details: " + err.Error())
+	}
+	return err
+}
+
 func (rs *RedisStore) Publish(code string) (bool, error) {
 
 	var res int
@@ -239,6 +247,10 @@ func (rs *RedisStore) Do(cmd string, args ...string) error {
 		return errors.New("redis " + cmd + " failed. Detais: " + err.Error())
 	}
 	return nil
+}
+
+func (rs *RedisStore) DoAction(a radix.Action) error {
+	return rs.pool.Do(a)
 }
 
 // Exists returns true if key exists.
