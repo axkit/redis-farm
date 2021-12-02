@@ -27,6 +27,7 @@ type Storer interface {
 	Lrem(key, element string, cnt int) error
 	Connect() error
 	Exists(key string) (bool, error)
+	Del(keys ...string) (int, error)
 }
 
 var _ Storer = (*RedisStore)(nil)

@@ -262,3 +262,9 @@ func (rs *RedisStore) Exists(key string) (bool, error) {
 	}
 	return val == 1, nil
 }
+
+func (rs *RedisStore) Del(keys ...string) (int, error) {
+	var val int
+	err := rs.pool.Do(radix.Cmd(&val, "DEL", keys...))
+	return val, err
+}
