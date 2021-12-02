@@ -240,7 +240,7 @@ func (rs *RedisStore) Lrem(key, element string, cnt int) error {
 }
 
 func (rs *RedisStore) Do(cmd string, args ...string) error {
-	var res int
+	var res string
 
 	err := rs.pool.Do(radix.Cmd(&res, cmd, args...))
 	if err != nil {
