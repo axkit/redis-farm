@@ -145,12 +145,9 @@ func (rs *RedisStore) PublishEx(channel string, msg string) (bool, error) {
 	var res int
 	err := rs.pool.Do(radix.Cmd(&res, "PUBLISH", channel, msg))
 	if err != nil {
-		return false, errors.New("redis publish " + msg + " to channel " + channel + " failed. Detais: " + err.Error())
+		return false, err
 	}
 
-	if res > 0 {
-		rs.log.Debug().Str("channel", channel).Str("msg", msg).Msg("message sent succesfully")
-	}
 	return res > 0, err
 }
 
